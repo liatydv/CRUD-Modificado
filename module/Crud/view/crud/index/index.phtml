@@ -27,7 +27,7 @@
     <td><a href="<?php echo $this->url('crud', ['action' => "edit", 'id' => $datos['id']]);?>" class="label label-default"> Modificar </a></td>
     <td><a onclick="alerta(<?php echo $datos['id']; ?>)" href="#" class="label label-danger"> Eliminar </a></td>
     </tr>
-    <?php// echo $this->url('crud', ['action' => "delete", 'id' => $datos['id']]);?> 
+   
     <?php endforeach; ?>
 <?php else:?>
 <tr>
@@ -53,35 +53,32 @@ const swalWithBootstrapButtons = Swal.mixin({
 })
 
 swalWithBootstrapButtons.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
+  title: '¿Esta seguro?',
+  text: "Esta accion es irreversible!",
+  type: 'Precaucion',
   showCancelButton: true,
-  confirmButtonText : 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
+  confirmButtonText : 'Si eliminar!',
+  cancelButtonText: 'No, Eliminar!',
   reverseButtons: true
 }).then((result) => {
   if (result.value) {
     swalWithBootstrapButtons.fire(
-      'Deleted!',
-      'Your file has been deleted.',
+      'Eliminado!',
+      'El usuario a sido eliminado.',
       'success'
        )  
-     window.location.href = " <?php echo $this->url('crud', ['action' => "delete  ", 'id' => $datos['id']]); ?>  ";
+     window.location.href = " <?php echo $this->url('crud', ['action' => "delete", 'id' => $datos['id']]); ?>  ";
      
   } else if (
     /* Read more about handling dismissals below */
     result.dismiss === Swal.DismissReason.cancel
   ) {
     swalWithBootstrapButtons.fire(
-      'Cancelled',
-      'Your imaginary file is safe :)',
+      'Cancelado',
+      'El usuario no a sido eliminado:)',
       'error'
     )
   }
 })}
 
-function ale(){
-  alert("holiwis");
-}
     </script>
