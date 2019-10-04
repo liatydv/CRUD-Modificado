@@ -35,15 +35,14 @@ class UsersService
 	}
 
 	public function updateUser($formData){
-		// enviar solo los parametros que queremos modificar
-		$data = array(
+		//echo "<pre>"; print_r ($formData); exit;
+		$dataa = array(
 			"id" => $formData['id'],
 			"nombre" => $formData['nombre'],
 			"correo" => $formData['correo'],
 			"contrasena" => $formData['contrasena']
 			);
-		//llamada al modelo
-		$user = $this->usersModel->updateUser($data);
+		$user = $this->usersModel->updateUser($dataa);
 		return $user;
 
 	}

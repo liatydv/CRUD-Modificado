@@ -48,9 +48,9 @@ class CrudTable extends TableGateway
 
 		return $result[0];
 	}
-	public function updateUser($data){
+	public function updateUser($dataa){
 	
-		$user = $this->update($data, array("id"=>$data['id']));
+        $user = $this->update($dataa, array("id"=>$dataa['id']));
 		return $user;
     }
     

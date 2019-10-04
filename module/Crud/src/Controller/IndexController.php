@@ -18,7 +18,7 @@ class IndexController extends AbstractActionController{
 	
 	private $userService;
 	
-	public function __construct($userService){
+	public function __construct(){
 		$this->userService = new UsersService();
 	}
 //creacion de un metodo para visualizar la vista "index"
@@ -29,6 +29,7 @@ class IndexController extends AbstractActionController{
 		return new ViewModel(array("posts"=>$posts));
 		
 	}
+
 	public function addAction(){
 		$form = new PostForm();
 		
@@ -50,21 +51,17 @@ class IndexController extends AbstractActionController{
 
 	public function editAction(){
 		$form = new PostForm();
-		#recupera id
 		$id_user = $this->params()->fromRoute("id");
-		//echo $id_user; exit;
 		$user = $this->userService->getUserById($id_user);
-		//carga los valores al formulario
+		//print_r ($user);
 		$form-> setData($user);
-		//para que nos muestre el formulario
+		
 		if ($this->getRequest()->isPost()) {
-			# recuperar datos
 			$formData = $this->getRequest()->getPost();
-			//imprime
-			//echo "<pre>"; print_r($formData);exit;
+			//print_r ($formData);
 			$user = $this->userService->updateUser($formData);
+			//echo "<pre>"; print_r ($user); exit;
 				if ($user) {
-					# valida que la variable tenga algo para regresarlo.
 					$this->redirect()->toUrl($this->getRequest()->getBAseUrl().'/crud');
 				}
 		}
